@@ -15,7 +15,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-     environment: nuget
+    environment: nuget
 
     steps:
       - name: Checkout repository
