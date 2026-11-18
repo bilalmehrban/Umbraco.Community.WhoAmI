@@ -1,0 +1,14 @@
+{
+  "id": "WhoAmI",
+  "name": "WhoAmI",
+  "version": "1.0.0",
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "name": "Who Am I Bundle",
+      "alias": "WhoAmI.Bundle",
+      "type": "bundle",
+      "js": "/App_Plugins/WhoAmI/who-am-i.js"
+    }
+  ]
+}

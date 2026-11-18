@@ -1,0 +1,24 @@
+{
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+    "AuthorDetails": {
+      "Name": "Bilal Mehrban",
+      "ImageUrl": "https://github.com/bilalmehrban.png"
+    },
+    "Category": "Editor Tools",
+    "Description": "Shows the current backoffice user's assigned user groups in the current-user panel. Built with the Umbraco UI Library, so it follows your theme and each user's backoffice language.",
+    "LicenseTypes": [ "Free" ],
+    "IssueTrackerUrl": "https://github.com/bilalmehrban/Umbraco.Community.WhoAmI/issues",
+    "PackageType": "Package",
+    "Screenshots": [
+      {
+        "ImageUrl": "https://raw.githubusercontent.com/bilalmehrban/Umbraco.Community.WhoAmI/main/docs/screenshots/screenshot-light.png",
+        "Caption": "User groups shown in the current-user panel (light theme)"
+      },
+      {
+        "ImageUrl": "https://raw.githubusercontent.com/bilalmehrban/Umbraco.Community.WhoAmI/main/docs/screenshots/screenshot-dark.png",
+        "Caption": "Dark theme"
+      }
+    ],
+    "Tags": [ "backoffice", "user-groups", "current-user", "permissions" ],
+    "Title": "Who Am I"
+  }

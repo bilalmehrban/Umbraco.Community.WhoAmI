@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Who Am I">
+  <rect width="256" height="256" rx="56" fill="#283a97"/>
+  <circle cx="128" cy="86" r="34" fill="#ffffff"/>
+  <path d="M60 170C60 138 90 124 128 124C166 124 196 138 196 170Z" fill="#ffffff"/>
+  <rect x="52" y="194" width="68" height="28" rx="14" fill="#f5c1bc"/>
+  <rect x="136" y="194" width="68" height="28" rx="14" fill="#f5c1bc"/>
+</svg>

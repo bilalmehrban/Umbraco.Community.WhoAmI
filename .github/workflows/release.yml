@@ -1,0 +1,55 @@
+name: Release Package
+
+# Starts when a version tag is pushed (e.g. v1.0.0).
+# Publishes to NuGet via trusted publishing (OIDC) - no long-lived API key.
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: read
+  id-token: write # required by NuGet/login for trusted publishing
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: src/Umbraco.Community.WhoAmI/Client/package-lock.json
+
+      - name: Set version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+
+      - name: Sync version into umbraco-package.json
+        run: sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" src/Umbraco.Community.WhoAmI/Client/public/umbraco-package.json
+
+      - name: Build client
+        working-directory: src/Umbraco.Community.WhoAmI/Client
+        run: npm ci && npm run build
+
+      - name: Pack
+        run: dotnet pack src/Umbraco.Community.WhoAmI/Umbraco.Community.WhoAmI.csproj -c Release -o artifacts /p:Version=$VERSION
+
+      - name: NuGet login (trusted publishing)
+        id: login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ vars.NUGET_USER }}
+
+      - name: Push to NuGet
+        run: dotnet nuget push "artifacts/*.nupkg" -k ${{ steps.login.outputs.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
